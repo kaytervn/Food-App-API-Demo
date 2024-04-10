@@ -2,6 +2,19 @@ import User from "../models/UserModel.js";
 import { mongoose } from "mongoose";
 import cloudinary from "../utils/cloudinary.js";
 
+const getUser = async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    return res.status(400).json({ error: "Incorrect ID" });
+  }
+
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    return res.status(404).json({ error: "User not found" });
+  }
+
+  return res.status(200).json({ user });
+};
+
 const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
@@ -84,4 +97,4 @@ const updateUser = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, updateUser };
+export { registerUser, loginUser, updateUser, getUser };

@@ -4,6 +4,7 @@
 
 | Request     | Method | URL                                                    | Body Type | Arguments             |
 | ----------- | ------ | ------------------------------------------------------ | --------- | --------------------- |
+| Get user    | GET    | https://food-app-api-demo.onrender.com/api/users/:id   | N/A       | N/A                   |
 | Login       | POST   | https://food-app-api-demo.onrender.com/api/users/login | raw JSON  | email, password       |
 | Register    | POST   | https://food-app-api-demo.onrender.com/api/users/      | raw JSON  | name, email, password |
 | Update user | PUT    | https://food-app-api-demo.onrender.com/api/users/:id   | form-data | image (file)          |

@@ -3,6 +3,7 @@ import {
   loginUser,
   registerUser,
   updateUser,
+  getUser,
 } from "../controllers/usersController.js";
 import multer from "multer";
 
@@ -10,6 +11,8 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 const router = express.Router();
+
+router.get("/:id", getUser);
 
 router.post("/", registerUser);
 
