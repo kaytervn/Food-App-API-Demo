@@ -2,11 +2,13 @@ import express from "express";
 import mongoose from "mongoose";
 import { foodsRoutes } from "./routes/foodsRoutes.js";
 import { usersRoutes } from "./routes/usersRoutes.js";
+import job from "./utils/cron.js";
 
 const app = express();
 app.use(express.json({ limit: "200mb" }));
 app.use("/api/foods", foodsRoutes);
 app.use("/api/users", usersRoutes);
+job.start();
 
 mongoose
   .connect("mongodb+srv://admin:123@foodappapi.v74oqco.mongodb.net/", {
