@@ -2,6 +2,15 @@ import Food from "../models/FoodModel.js";
 import { mongoose } from "mongoose";
 import cloudinary from "../utils/cloudinary.js";
 
+const getFood = async (req, res) => {
+  try {
+    const food = await Food.findById(req.params.id);
+    return res.status(200).json({ food });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 const getFoods = async (req, res) => {
   try {
     const foods = await Food.find().sort({ createdAt: "desc" });
@@ -68,4 +77,4 @@ const deleteFood = async (req, res) => {
   }
 };
 
-export { getFoods, createFood, deleteFood };
+export { getFoods, createFood, deleteFood, getFood };
