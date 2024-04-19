@@ -25,8 +25,8 @@ const createFood = async (req, res) => {
     return res.status(400).json({ error: "No image uploaded" });
   }
 
-  const { title, price } = req.body;
-  if (!title || !price) {
+  const { title, price, description } = req.body;
+  if (!title || !price || !description) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
@@ -48,6 +48,7 @@ const createFood = async (req, res) => {
       image: uploadResponse.secure_url,
       title,
       price,
+      description,
     });
     return res.status(200).json({ food });
   } catch (error) {
