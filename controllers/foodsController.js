@@ -23,6 +23,7 @@ const getFoods = async (req, res) => {
 const searchFood = async (req, res) => {
   try {
     const { title } = req.body;
+    let foods;
     if (!title || title.trim() == "") {
       foods = await Food.find();
     } else {
