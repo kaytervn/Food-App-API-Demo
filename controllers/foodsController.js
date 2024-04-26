@@ -20,7 +20,7 @@ const getFoods = async (req, res) => {
   }
 };
 
-const searchFood = async (req, res) => {
+const searchFoods = async (req, res) => {
   try {
     const { title } = req.body;
     let foods;
@@ -32,6 +32,39 @@ const searchFood = async (req, res) => {
       );
     }
     return res.status(200).json({ foods });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+const searchFoodsLazyLoading = async (req, res) => {
+  try {
+    const { title, page } = req.body;
+    const limit = 10;
+    const skip = (page - 1) * limit;
+
+    let foods;
+    let query = {};
+
+    if (title && title.trim() != "") {
+      query.title = { $regex: title, $options: "i" };
+    }
+
+    const totalCount = await Food.countDocuments(query);
+    const totalPages = Math.ceil(totalCount / limit);
+
+    if (!title || title.trim() == "") {
+      foods = await Food.find()
+        .sort({ createdAt: "desc" })
+        .skip(skip)
+        .limit(limit);
+    } else {
+      foods = await Food.find(query)
+        .sort({ createdAt: "desc" })
+        .skip(skip)
+        .limit(limit);
+    }
+    return res.status(200).json({ foods, totalPages, currentPage: page });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -95,4 +128,11 @@ const deleteFood = async (req, res) => {
   }
 };
 
-export { getFoods, createFood, deleteFood, getFood, searchFood };
+export {
+  getFoods,
+  createFood,
+  deleteFood,
+  getFood,
+  searchFoods,
+  searchFoodsLazyLoading,
+};

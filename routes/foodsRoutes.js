@@ -4,7 +4,8 @@ import {
   deleteFood,
   getFoods,
   getFood,
-  searchFood,
+  searchFoods,
+  searchFoodsLazyLoading,
 } from "../controllers/foodsController.js";
 import multer from "multer";
 
@@ -16,7 +17,9 @@ router.get("/", getFoods);
 
 router.get("/:id", getFood);
 
-router.post("/search", searchFood);
+router.post("/search", searchFoods);
+
+router.post("/searchLazyLoading", searchFoodsLazyLoading);
 
 router.post("/", upload.single("image"), createFood);
 
