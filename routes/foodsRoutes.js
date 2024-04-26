@@ -4,6 +4,7 @@ import {
   deleteFood,
   getFoods,
   getFood,
+  searchFood,
 } from "../controllers/foodsController.js";
 import multer from "multer";
 
@@ -14,6 +15,8 @@ const router = express.Router();
 router.get("/", getFoods);
 
 router.get("/:id", getFood);
+
+router.post("/search", searchFood);
 
 router.post("/", upload.single("image"), createFood);
 

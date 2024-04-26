@@ -20,6 +20,20 @@ const getFoods = async (req, res) => {
   }
 };
 
+const searchFood = async (req, res) => {
+  try {
+    const { title } = req.body;
+    if (!title || title.trim() == "") {
+      foods = await Food.find();
+    } else {
+      foods = await Food.find({ title: { $regex: title, $options: "i" } });
+    }
+    return res.status(200).json({ foods });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
+};
+
 const createFood = async (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: "No image uploaded" });
@@ -78,4 +92,4 @@ const deleteFood = async (req, res) => {
   }
 };
 
-export { getFoods, createFood, deleteFood, getFood };
+export { getFoods, createFood, deleteFood, getFood, searchFood };
