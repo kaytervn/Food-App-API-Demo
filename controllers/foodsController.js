@@ -25,7 +25,7 @@ const searchFood = async (req, res) => {
     const { title } = req.body;
     let foods;
     if (!title || title.trim() == "") {
-      foods = await Food.find();
+      foods = await Food.find().sort({ createdAt: "desc" });
     } else {
       foods = await Food.find({ title: { $regex: title, $options: "i" } });
     }
