@@ -19,7 +19,7 @@ router.get("/:id", getFood);
 
 router.post("/search", searchFoods);
 
-router.get("/lazy", getFoodsLazy);
+router.post("/lazy", getFoodsLazy);
 
 router.post("/", upload.single("image"), createFood);
 

@@ -15,7 +15,7 @@
 | ------------------------ | ------ | ------------------------------------------------------- | --------- | --------------------------------------- |
 | Get food                 | GET    | https://food-app-api-demo.onrender.com/api/foods/:id    | N/A       | N/A                                     |
 | Get foods                | GET    | https://food-app-api-demo.onrender.com/api/foods/       | N/A       | N/A                                     |
-| Get foods (lazy loading) | GET    | https://food-app-api-demo.onrender.com/api/foods/layzy  | raw JSON  | page, limit                             |
+| Get foods (lazy loading) | POST   | https://food-app-api-demo.onrender.com/api/foods/layzy  | raw JSON  | page, limit                             |
 | Create food              | POST   | https://food-app-api-demo.onrender.com/api/foods/       | form-data | image (file), title, price, description |
 | Delete food              | DELETE | https://food-app-api-demo.onrender.com/api/foods/:id    | N/A       | N/A                                     |
 | Search foods             | POST   | https://food-app-api-demo.onrender.com/api/foods/search | raw JSON  | title                                   |
