@@ -39,8 +39,7 @@ const searchFoods = async (req, res) => {
 
 const searchFoodsLazyLoading = async (req, res) => {
   try {
-    const { title, page } = req.body;
-    const limit = 10;
+    const { title, page, limit } = req.body;
     const skip = (page - 1) * limit;
 
     let foods;
