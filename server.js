@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json({ limit: "200mb" }));
 app.use("/api/foods", foodsRoutes);
 app.use("/api/users", usersRoutes);
-job.start();
+// job.start();
 
 const server = app.listen(4000, () => console.log("Listening at 4000"));
 
