@@ -4,6 +4,8 @@ import {
   registerUser,
   updateUser,
   getUser,
+  resetPassword,
+  forgetPassword,
 } from "../controllers/usersController.js";
 import multer from "multer";
 
@@ -19,5 +21,9 @@ router.post("/", registerUser);
 router.post("/login", loginUser);
 
 router.put("/:id", upload.single("image"), updateUser);
+
+router.post("/reset-password", resetPassword);
+
+router.post("/forget-password", forgetPassword);
 
 export { router as usersRoutes };
