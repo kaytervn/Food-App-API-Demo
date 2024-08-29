@@ -141,10 +141,9 @@ const resetPassword = async (req, res) => {
     if (user.otp !== otp) {
       return res.status(400).json({ error: "Invalid OTP" });
     }
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
-    user.password = hashedPassword;
+    user.password = newPassword;
     user.otp = null;
-    await user.save();
+    user.updateOne({ password: newPassword, otp: null });
     return res.status(200).json({ message: "Password reset successfully" });
   } catch (error) {
     return res.status(500).json({ error: error.message });
